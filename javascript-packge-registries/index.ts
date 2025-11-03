@@ -1,1 +1,3 @@
-console.log("Hello via Bun!");
+import { add } from "./lib.ts";
+
+console.log(add(1, 2));
