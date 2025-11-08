@@ -1,4 +1,5 @@
 import { Tasks } from "./task";
+import "./index.css";
 
 export default function App() {
   return (
