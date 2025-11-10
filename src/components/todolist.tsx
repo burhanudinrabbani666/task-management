@@ -1,13 +1,13 @@
 const listening = [
   { id: 1, albumName: "LoveLess", isDone: false },
-  { id: 2, albumName: "Souvlaki", isDone: false },
+  { id: 2, albumName: "Souvlaki", isDone: true },
   { id: 3, albumName: "Long Season", isDone: false },
 ];
 
 export function Tasks() {
   return (
-    <div>
-      <h2 className="">Tasks</h2>
+    <div className="border border-neutral-300 p-3 rounded-sm flex flex-col gap-1">
+      <h3 className="font-semibold ">Tasks</h3>
       <ul>
         {listening.map((taskAlbum) => (
           <TaskItem
@@ -29,7 +29,15 @@ export function TaskItem({
   isDone: boolean;
 }) {
   if (isDone) {
-    return null;
+    return (
+      <li className="opacity-50 line-through flex gap-2">
+        <input type="checkbox" /> {title}
+      </li>
+    );
   }
-  return <li>{title} still not played</li>;
+  return (
+    <li className="flex gap-2">
+      <input type="checkbox" /> {title}
+    </li>
+  );
 }
