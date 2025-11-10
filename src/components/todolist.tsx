@@ -8,7 +8,7 @@ export function Tasks() {
   return (
     <div className="border border-neutral-300 p-3 rounded-sm flex flex-col gap-1">
       <h3 className="font-semibold ">Tasks</h3>
-      <ul>
+      <ul className="flex flex-col gap-1">
         {listening.map((taskAlbum) => (
           <TaskItem
             key={taskAlbum.id}

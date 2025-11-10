@@ -1,5 +1,6 @@
 import { NotesRender } from "./note-taking";
 import { Tasks } from "./todolist";
+import { Habits } from "./habit-tracking";
 
 function dateAndNavigation({ time }: { time: string }) {
   return <span>{time}</span>;
@@ -13,6 +14,7 @@ export function WorkTab() {
         <div className="flex flex-col gap-2">
           <NotesRender />
           <Tasks />
+          <Habits />
         </div>
       </div>
     </div>
