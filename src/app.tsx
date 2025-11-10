@@ -1,6 +1,5 @@
-// import { Tasks } from "./tasks";
 import { Navigation } from "./navigation";
-import { WorkTab } from "./components/task-tab";
+import { WorkTab } from "./components/work-tab";
 
 export default function App() {
   return (
