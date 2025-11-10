@@ -1,5 +1,5 @@
 import { Notes } from "./note";
-import { Tasks } from "./task";
+import { Albums } from "./album";
 import { Habits } from "./habit";
 
 export function WorkTab() {
@@ -10,7 +10,7 @@ export function WorkTab() {
       <div id="content-box" className="w-full">
         <div className="flex flex-col gap-2">
           <Notes />
-          <Tasks />
+          <Albums />
           <Habits />
         </div>
       </div>
