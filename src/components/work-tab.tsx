@@ -1,4 +1,4 @@
-import { NotesRender } from "./note-taking";
+import { Notes } from "./note-taking";
 import { Tasks } from "./todolist";
 import { Habits } from "./habit-tracking";
 
@@ -9,7 +9,7 @@ export function WorkTab() {
 
       <div id="content-box" className="w-full">
         <div className="flex flex-col gap-2">
-          <NotesRender />
+          <Notes />
           <Tasks />
           <Habits />
         </div>

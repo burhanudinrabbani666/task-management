@@ -16,12 +16,14 @@ export function NoteItem({ title, notes }: { title: string; notes: string }) {
   );
 }
 
-export function NotesRender() {
+export function Notes() {
   return (
-    <div>
+    <ul>
       {noteData.map((note) => (
-        <NoteItem key={note.id} title={note.title} notes={note.noteValue} />
+        <li key={note.id}>
+          <NoteItem title={note.title} notes={note.noteValue} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
