@@ -1,6 +1,6 @@
-import { Notes } from "./note-taking";
-import { Tasks } from "./todolist";
-import { Habits } from "./habit-tracking";
+import { Notes } from "./note";
+import { Tasks } from "./task";
+import { Habits } from "./habit";
 
 export function WorkTab() {
   return (
