@@ -1,8 +1,10 @@
+import { List } from "@phosphor-icons/react";
+
 export function Navigation() {
   return (
     <nav className="flex justify-between px-6 pt-12">
-      <button>
-        <img src="/menu.svg" alt="" />
+      <button className="cursor-pointer rounded-full px-2 hover:bg-neutral-200">
+        <List size={24} />
       </button>
       <form method="get">
         <label htmlFor="" className="hidden">
