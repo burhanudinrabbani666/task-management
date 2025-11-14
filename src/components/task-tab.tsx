@@ -19,16 +19,21 @@ export function TaskTab() {
       <div className="flex items-center justify-between px-4">
         <span> {dayTime} </span>
         <DropdownMenu>
-          <DropdownMenuTrigger className="bg- rounded-2xl px-4 py-1 font-bold text-neutral-100">
-            Add
+          <DropdownMenuTrigger className="bg- rounded-2xl bg-violet-700 px-4 py-1 font-bold text-neutral-100 hover:bg-violet-800">
+            Add +
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuContent className="mr-4">
+            <DropdownMenuLabel>User Control panel</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer hover:bg-neutral-400">
+              Quick Notes
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer hover:bg-neutral-400">
+              Task Manager{" "}
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer hover:bg-neutral-400">
+              Add Routine
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
