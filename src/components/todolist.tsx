@@ -1,7 +1,7 @@
-const listening = [
-  { id: 1, albumName: "LoveLess", isDone: false },
-  { id: 2, albumName: "Souvlaki", isDone: true },
-  { id: 3, albumName: "Long Season", isDone: false },
+const taskList = [
+  { id: 1, title: "Listening LoveLess by My Bloody Valentine", isDone: false },
+  { id: 2, title: "Make Ui Component", isDone: true },
+  { id: 3, title: "learning Data Structure and Alghorithm", isDone: false },
 ];
 
 export function Tasks() {
@@ -9,10 +9,10 @@ export function Tasks() {
     <div className="flex flex-col gap-1 rounded-sm border border-neutral-300 p-3">
       <h3 className="font-semibold">Tasks</h3>
       <ul className="flex flex-col gap-1">
-        {listening.map((taskAlbum) => (
+        {taskList.map((taskAlbum) => (
           <TaskItem
             key={taskAlbum.id}
-            title={taskAlbum.albumName}
+            title={taskAlbum.title}
             isDone={taskAlbum.isDone}
           />
         ))}

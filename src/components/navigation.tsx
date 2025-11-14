@@ -1,6 +1,6 @@
 export function Navigation() {
   return (
-    <nav className="flex justify-between pt-12">
+    <nav className="flex justify-between px-6 pt-12">
       <button>
         <img src="/menu.svg" alt="" />
       </button>
