@@ -9,9 +9,9 @@ const noteData = [
 
 export function NoteItem({ title, notes }: { title: string; notes: string }) {
   return (
-    <section className="border border-neutral-300 p-3 rounded-sm flex flex-col gap-1 h-18">
+    <section className="flex h-18 flex-col gap-1 rounded-sm border border-neutral-300 p-3">
       <h3 className="font-semibold">{title}</h3>
-      <span className=" opacity-80 truncate">{notes}</span>
+      <span className="truncate opacity-80">{notes}</span>
     </section>
   );
 }

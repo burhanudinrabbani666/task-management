@@ -6,8 +6,8 @@ const listening = [
 
 export function Tasks() {
   return (
-    <div className="border border-neutral-300 p-3 rounded-sm flex flex-col gap-1">
-      <h3 className="font-semibold ">Tasks</h3>
+    <div className="flex flex-col gap-1 rounded-sm border border-neutral-300 p-3">
+      <h3 className="font-semibold">Tasks</h3>
       <ul className="flex flex-col gap-1">
         {listening.map((taskAlbum) => (
           <TaskItem
@@ -30,7 +30,7 @@ export function TaskItem({
 }) {
   if (isDone) {
     return (
-      <li className="opacity-50 line-through flex gap-2">
+      <li className="flex gap-2 line-through opacity-50">
         <input type="checkbox" /> {title}
       </li>
     );

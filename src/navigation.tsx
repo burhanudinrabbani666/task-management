@@ -1,6 +1,6 @@
 export function Navigation() {
   return (
-    <nav className="flex justify-between w-full px-4 pt-12 pb-4">
+    <nav className="flex justify-between pt-12">
       <button>
         <img src="/menu.svg" alt="" />
       </button>
@@ -13,7 +13,7 @@ export function Navigation() {
           name="q"
           id="q"
           placeholder="Search"
-          className=" rounded-2xl indent-2 bg-neutral-50 px-3 py-2 text-neutral-500 w-60"
+          className="rounded-2xl bg-neutral-50 px-3 py-2 indent-2 text-neutral-500"
         />
       </form>
       <img src="/logo.svg" alt="logo" className="w-6" />
