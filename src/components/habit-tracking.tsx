@@ -1,14 +1,14 @@
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
-} from "@/components/ui/dropdown-menu";
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import {
+  DotsThreeIcon,
   PencilCircleIcon,
   TrashIcon,
-  DotsThreeIcon,
-  HeartIcon,
 } from "@phosphor-icons/react";
 
 const habitData = [
@@ -32,25 +32,6 @@ export function Habits() {
           ))}
         </ul>
       </div>
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <DotsThreeIcon className="" size={20} fill="bold" />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="mr-5 flex min-w-fit flex-col gap-1 p-2">
-          <Button className="flex justify-start gap-3 rounded-b-none border border-b-neutral-300 text-neutral-700 hover:underline">
-            <PencilCircleIcon />
-            <span>Edit</span>
-          </Button>
-          <Button className="flex justify-start gap-3 rounded-b-none border border-b-neutral-300 text-neutral-700 hover:underline">
-            <TrashIcon />
-            <span>Delete</span>
-          </Button>
-          <Button className="flex justify-start gap-3 rounded-b-none border border-b-neutral-300 text-neutral-700 hover:underline">
-            <HeartIcon />
-            <span>Add Habit</span>
-          </Button>
-        </DropdownMenuContent>
-      </DropdownMenu>
     </div>
   );
 }
@@ -62,16 +43,32 @@ export function HabitItem({
   title: string;
   isDone: boolean;
 }) {
-  if (isDone) {
-    return (
-      <li className="rounded bg-green-300 py-1 indent-1">
-        <span>{title}</span>
-      </li>
-    );
-  }
   return (
-    <li className="rounded border border-neutral-200 py-1 indent-1">
-      <span>{title}</span>
+    <li
+      className={cn(
+        "flex justify-between rounded border px-2 py-3 indent-1",
+        isDone && "bg-green-300",
+        !isDone && "bg-neutral-200",
+      )}
+    >
+      <h4>{title}</h4>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <DotsThreeIcon className="" size={20} fill="bold" />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="mr-5 flex min-w-fit flex-col gap-1 p-2">
+          <DropdownMenuItem>
+            <PencilCircleIcon />
+            <span>Edit</span>
+          </DropdownMenuItem>
+
+          <DropdownMenuItem>
+            <TrashIcon />
+            <span>Delete</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </li>
   );
 }
