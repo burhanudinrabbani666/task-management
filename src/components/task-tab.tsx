@@ -13,9 +13,9 @@ export function TaskTab() {
       </div>
       <div id="content-box" className="w-full">
         <div className="flex flex-col gap-2">
+          <Habits />
           <NotesRender />
           <Tasks />
-          <Habits />
         </div>
       </div>
     </div>

@@ -18,12 +18,12 @@ export default function App() {
       <Navigation />
       <TaskTab />
       <DropdownMenu>
-        <DropdownMenuTrigger className="fixed right-1/4 bottom-1/6 rounded-md bg-indigo-500 p-1 text-neutral-50 hover:bg-indigo-600">
+        <DropdownMenuTrigger className="fixed right-1/9 bottom-1/6 rounded-md bg-indigo-500 p-1 text-neutral-50 hover:bg-indigo-600">
           <Plus size={35} weight="bold" />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-4">
-          <DropdownMenuLabel>User Control panel</DropdownMenuLabel>
-          <DropdownMenuSeparator />
+          <DropdownMenuLabel className="">User Control panel</DropdownMenuLabel>
+          <DropdownMenuSeparator className="mx-1 bg-neutral-500" />
           <DropdownMenuItem className="cursor-pointer hover:bg-neutral-400">
             Quick Notes
           </DropdownMenuItem>
