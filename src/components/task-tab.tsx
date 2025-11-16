@@ -1,4 +1,4 @@
-import { Habits } from "./habit-tracking";
+import Habits from "./habit-tracking";
 import dayjs from "dayjs";
 
 const dayTime = dayjs().format("D MMMM YYYY");
