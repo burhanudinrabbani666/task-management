@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Plus } from "@phosphor-icons/react";
+import { PlusIcon } from "@phosphor-icons/react";
 
 export default function App() {
   return (
@@ -19,7 +19,7 @@ export default function App() {
       <TaskTab />
       <DropdownMenu>
         <DropdownMenuTrigger className="fixed right-1/9 bottom-1/6 rounded-md bg-indigo-500 p-1 text-neutral-50 hover:bg-indigo-600">
-          <Plus size={35} weight="bold" />
+          <PlusIcon size={35} weight="bold" />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-4">
           <DropdownMenuLabel className="">User Control panel</DropdownMenuLabel>

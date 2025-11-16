@@ -1,15 +1,17 @@
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-} from "@/components/ui/dropdown-menu";
-import {
-  PencilCircleIcon,
-  TrashIcon,
-  DotsThreeIcon,
-  HeartIcon,
-} from "@phosphor-icons/react";
+// import { Button } from "@/components/ui/button";
+// import {
+//   DropdownMenu,
+//   DropdownMenuTrigger,
+//   DropdownMenuContent,
+// } from "@/components/ui/dropdown-menu";
+// import {
+//   PencilCircleIcon,
+//   TrashIcon,
+//   DotsThreeIcon,
+//   HeartIcon,
+// } from "@phosphor-icons/react";
+
+import { OverflowMenu } from "./overflow-menu";
 
 const habitData = [
   { id: 1, title: "Study", isDone: true },
@@ -22,7 +24,7 @@ export function Habits() {
     <div className="flex items-start justify-between gap-4 rounded-sm border border-neutral-300 p-3">
       <div className="flex w-full flex-col gap-1 rounded-sm">
         <h3 className="mb-2 font-semibold">Habit Tracking</h3>
-        <ul className="flex flex-col gap-1">
+        <ul className="flex flex-col gap-2">
           {habitData.map((habit) => (
             <HabitItem
               key={habit.id}
@@ -32,7 +34,7 @@ export function Habits() {
           ))}
         </ul>
       </div>
-      <DropdownMenu>
+      {/* <DropdownMenu>
         <DropdownMenuTrigger>
           <DotsThreeIcon className="" size={20} fill="bold" />
         </DropdownMenuTrigger>
@@ -50,7 +52,7 @@ export function Habits() {
             <span>Add Habit</span>
           </Button>
         </DropdownMenuContent>
-      </DropdownMenu>
+      </DropdownMenu> */}
     </div>
   );
 }
@@ -64,14 +66,16 @@ export function HabitItem({
 }) {
   if (isDone) {
     return (
-      <li className="rounded bg-green-300 py-1 indent-1">
+      <li className="flex items-center justify-between rounded bg-green-300 px-4 py-3 indent-1">
         <span>{title}</span>
+        <OverflowMenu />
       </li>
     );
   }
   return (
-    <li className="rounded border border-neutral-200 py-1 indent-1">
+    <li className="flex items-center justify-between rounded border border-neutral-200 px-4 py-3 indent-1">
       <span>{title}</span>
+      <OverflowMenu />
     </li>
   );
 }
