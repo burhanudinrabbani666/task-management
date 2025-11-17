@@ -13,10 +13,11 @@ import {
 import { useState } from "react";
 
 const habitData = [
-  { id: 1, title: "Study", isDone: true },
+  { id: 1, title: "Study", isDone: false },
   { id: 2, title: "Workout", isDone: false },
   { id: 3, title: "Meditation", isDone: false },
 ];
+
 export function OverflowMenu({
   id,
   onDelete,
@@ -24,7 +25,7 @@ export function OverflowMenu({
   id: number;
   onDelete: (id: number) => void;
 }) {
-  const tailwindForItem = "flex items-center justify-start gap-3 ";
+  const tailwindForItem = "flex items-center justify-start gap-3 "; // tailwind valeu
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center rounded-2xl bg-neutral-200/60 py-1">
@@ -65,9 +66,16 @@ function HabitItem({
   isDone: boolean;
   onDelete: (id: number) => void;
 }) {
+  const [isDoneValue, setIsDone] = useState(isDone);
+
+  function toogleDone() {
+    setIsDone((prev) => !prev);
+  }
+
   return (
     <li
-      className={`flex items-center justify-between rounded px-4 py-3 indent-1 ${isDone ? "bg-green-300" : "border border-neutral-200"}`}
+      onClick={toogleDone}
+      className={`flex items-center justify-between rounded-xl px-4 py-3 indent-1 ${isDoneValue ? "bg-green-300 transition duration-300" : "border border-neutral-200 transition duration-300"}`}
     >
       <span>{title}</span>
       <OverflowMenu id={HabitId} onDelete={onDelete} />
@@ -84,6 +92,7 @@ export default function Habits() {
     );
     setHabits(updatedHabit);
   }
+
   return (
     <div className="flex items-start justify-between gap-4 rounded-sm border border-neutral-300 p-3">
       <div className="flex w-full flex-col gap-1 rounded-sm">
