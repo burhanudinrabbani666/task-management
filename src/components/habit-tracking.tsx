@@ -34,7 +34,7 @@ export function OverflowMenu({
       </DropdownMenuTrigger>
       <DropdownMenuContent
         side="left"
-        className="mr-2 flex flex-col gap-4 rounded-sm bg-neutral-200/90 p-4"
+        className="mr-2 flex flex-col gap-4 rounded-sm bg-neutral-50 p-4"
       >
         <DropdownMenuItem className={tailwindForItem}>
           <PencilIcon />
