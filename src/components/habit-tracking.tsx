@@ -19,7 +19,7 @@ const habitData = [
   { id: 3, title: "Meditation", isDone: false },
 ];
 
-export function OverflowMenu({
+export function HabitItemMenu({
   id,
   onDelete,
 }: {
@@ -56,7 +56,7 @@ export function OverflowMenu({
   );
 }
 
-function HabitItem({
+export function HabitItem({
   HabitId,
   title,
   isDone,
@@ -79,12 +79,12 @@ function HabitItem({
       className={`flex items-center justify-between rounded-xl px-4 py-3 indent-1 ${isDoneValue ? "bg-green-300 transition duration-300" : "bg-neutral-200 transition duration-300"}`}
     >
       <span>{title}</span>
-      <OverflowMenu id={HabitId} onDelete={onDelete} />
+      <HabitItemMenu id={HabitId} onDelete={onDelete} />
     </li>
   );
 }
 
-export default function Habits() {
+export function Habits() {
   const [habit, setHabits] = useState(habitData);
 
   function DeleteHabit(idToDelete: number) {
