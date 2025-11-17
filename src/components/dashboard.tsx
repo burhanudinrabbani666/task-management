@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 
 const dayTime = dayjs().format("D MMMM YYYY");
 
-export function TaskTab() {
+export function Dashboard() {
   return (
     <div className="flex flex-col gap-3 px-5">
       <div className="flex items-center justify-between px-4">
