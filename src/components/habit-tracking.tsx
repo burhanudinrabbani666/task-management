@@ -126,7 +126,7 @@ export function Habits() {
     setHabits(updatedHabits);
   }
 
-  function handleCreate(event: any) {
+  function handleCreate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     console.log(`handle create`);
