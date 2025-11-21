@@ -1,10 +1,4 @@
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@radix-ui/react-dropdown-menu";
-import {
   PencilIcon,
   PlusIcon,
   TrashIcon,
@@ -13,6 +7,13 @@ import {
 import { useState } from "react";
 import { AddHabit } from "./add-habit";
 import { cn } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { Button } from "./ui/button";
 
 type Habit = {
   id: number;
@@ -35,28 +36,23 @@ export function HabitItemMenu({
   id: number;
   onDelete: (id: number) => void;
 }) {
-  const tailwindForItem = "flex items-center justify-start gap-3 "; // tailwind valeu
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center rounded-2xl bg-neutral-200/60 py-1">
-        <DotsThreeVerticalIcon color="#333" />
+      <DropdownMenuTrigger asChild>
+        <Button>
+          <DotsThreeVerticalIcon color="#333" />
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent
-        side="left"
-        className="mr-2 flex flex-col gap-4 rounded-sm bg-neutral-50 p-4"
-      >
-        <DropdownMenuItem className={tailwindForItem}>
+      <DropdownMenuContent side="left">
+        <DropdownMenuItem>
           <PencilIcon />
           <span>Edit</span>
         </DropdownMenuItem>
-        <DropdownMenuItem className={tailwindForItem}>
+        <DropdownMenuItem>
           <PlusIcon />
           <span>Add notes</span>
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => onDelete(id)}
-          className={tailwindForItem}
-        >
+        <DropdownMenuItem onClick={() => onDelete(id)}>
           <TrashIcon />
           <span>Delete</span>
         </DropdownMenuItem>
