@@ -17,6 +17,8 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 type Habit = {
   id: number;
@@ -81,7 +83,7 @@ export function HabitItem({
       className={cn(
         "flex items-baseline justify-between rounded-xl bg-amber-100 px-4 py-3 indent-1 inset-ring-2 inset-ring-neutral-300",
         habit.isDone &&
-          "bg-[url(/public/check-circle.svg)] bg-size-[200px] bg-right bg-no-repeat inset-ring-2 inset-ring-lime-800 transition duration-500",
+          "bg-[url(/public/check-circle.svg)] bg-size-[200px] bg-right bg-no-repeat inset-ring-2 inset-ring-green-700 transition duration-500",
       )}
     >
       <div className="flex flex-col gap-4">
@@ -91,8 +93,8 @@ export function HabitItem({
         </div>
         <Button
           className={cn(
-            "active:bg-lime-800",
-            habit.isDone && "border border-lime-800 bg-lime-800 text-white",
+            "active:bg-green-700",
+            habit.isDone && "border border-green-700 bg-green-700 text-white",
           )}
           variant="ghost"
           size="sm"
@@ -124,14 +126,24 @@ export function Habits() {
     setHabits(updatedHabits);
   }
 
+  function handleCreate(event: any) {
+    event.preventDefault();
+
+    console.log(`handle create`);
+  }
+
   return (
     <div className="flex flex-col items-start justify-between gap-4 p-3">
       <div className="flex w-full flex-col gap-4 rounded-sm">
-        <div className="flex justify-between">
-          <div className="">icon</div>
-          <AddHabit />
-        </div>
-
+        <form method="post" onSubmit={handleCreate} className="space-y-4">
+          <div>
+            <Label htmlFor="title">Title</Label>
+            <Input id="title" type="text" name="title" />
+          </div>
+          <Button type="submit" className="bg-indigo-400">
+            create Habit
+          </Button>
+        </form>
         <ul className="flex flex-col gap-2">
           {habits.map((habit) => (
             <HabitItem
