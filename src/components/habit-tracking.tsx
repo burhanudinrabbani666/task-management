@@ -2,7 +2,10 @@ import {
   PencilIcon,
   PlusIcon,
   TrashIcon,
-  DotsThreeVerticalIcon,
+  DotsThreeIcon,
+  BookIcon,
+  HeartIcon,
+  BedIcon,
 } from "@phosphor-icons/react";
 import { useState } from "react";
 import { AddHabit } from "./add-habit";
@@ -17,16 +20,19 @@ import { Button } from "./ui/button";
 
 type Habit = {
   id: number;
+  icon: React.ElementType;
   title: string;
   isDone: boolean;
 };
 
 type Habits = Habit[];
 
+const iconData = [BookIcon, HeartIcon, BedIcon];
+
 const habitData: Habits = [
-  { id: 1, title: "Study", isDone: false },
-  { id: 2, title: "Workout", isDone: false },
-  { id: 3, title: "Meditation", isDone: false },
+  { id: 1, icon: iconData[0], title: "Study", isDone: false },
+  { id: 3, icon: iconData[1], title: "Meditation", isDone: false },
+  { id: 2, icon: iconData[2], title: "Sleep 6 Hours", isDone: false },
 ];
 
 export function HabitItemMenu({
@@ -39,8 +45,8 @@ export function HabitItemMenu({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button>
-          <DotsThreeVerticalIcon color="#333" />
+        <Button size="icon-lg">
+          <DotsThreeIcon color="#333" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="left">
@@ -72,15 +78,29 @@ export function HabitItem({
 }) {
   return (
     <li
-      onClick={() => onToogleDone(habit.id)}
       className={cn(
-        "flex items-center justify-between rounded-xl px-4 py-3 indent-1",
-        habit.isDone
-          ? "bg-green-300 transition duration-300"
-          : "bg-neutral-200 transition duration-300",
+        "flex items-baseline justify-between rounded-xl bg-amber-100 px-4 py-3 indent-1 inset-ring-2 inset-ring-neutral-300",
+        habit.isDone &&
+          "bg-[url(/public/check-circle.svg)] bg-size-[200px] bg-right bg-no-repeat inset-ring-2 inset-ring-lime-800 transition duration-500",
       )}
     >
-      <span>{habit.title}</span>
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center gap-3">
+          <habit.icon size={28} weight="duotone" />
+          <span className="text-lg font-semibold">{habit.title}</span>
+        </div>
+        <Button
+          className={cn(
+            "active:bg-lime-800",
+            habit.isDone && "border border-lime-800 bg-lime-800 text-white",
+          )}
+          variant="ghost"
+          size="sm"
+          onClick={() => onToogleDone(habit.id)}
+        >
+          <span className="opacity-70">Check</span>
+        </Button>
+      </div>
       <HabitItemMenu id={habit.id} onDelete={onDelete} />
     </li>
   );
@@ -91,6 +111,7 @@ export function Habits() {
 
   function handleDelete(id: number) {
     const updatedHabits = habits.filter((habitItem) => habitItem.id !== id);
+    console.log(`hello`);
     setHabits(updatedHabits);
   }
 
@@ -104,9 +125,13 @@ export function Habits() {
   }
 
   return (
-    <div className="flex flex-col items-start justify-between gap-4 rounded-sm border border-neutral-300 p-3">
-      <div className="flex w-full flex-col gap-1 rounded-sm">
-        <h3 className="mb-2 font-semibold">Habit Tracking</h3>
+    <div className="flex flex-col items-start justify-between gap-4 p-3">
+      <div className="flex w-full flex-col gap-4 rounded-sm">
+        <div className="flex justify-between">
+          <div className="">icon</div>
+          <AddHabit />
+        </div>
+
         <ul className="flex flex-col gap-2">
           {habits.map((habit) => (
             <HabitItem
@@ -118,7 +143,6 @@ export function Habits() {
           ))}
         </ul>
       </div>
-      <AddHabit />
     </div>
   );
 }
