@@ -128,8 +128,16 @@ export function Habits() {
 
   function handleCreate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const title = formData.get("title");
+    const newId = habits.length > 0 ? habits[habits.length - 1].id + 1 : 1;
 
-    console.log(`handle create`);
+    const newTask = {
+      id: newId,
+      icon: iconData[Math.trunc(Math.random() * 2)],
+      title,
+      isDone: false,
+    };
   }
 
   return (
