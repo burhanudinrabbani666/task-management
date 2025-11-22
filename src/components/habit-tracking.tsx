@@ -1,6 +1,5 @@
 import {
   PencilIcon,
-  PlusIcon,
   TrashIcon,
   DotsThreeIcon,
   BookIcon,
@@ -55,10 +54,6 @@ export function HabitItemMenu({
         <DropdownMenuItem>
           <PencilIcon />
           <span>Edit</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <PlusIcon />
-          <span>Add notes</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => onDelete(id)}>
           <TrashIcon />
@@ -161,8 +156,8 @@ export function Habits() {
               id="title"
               type="text"
               name="title"
-              className="border-none opacity-50"
-              placeholder="write your Habit Here"
+              className="border-none px-0 opacity-50"
+              placeholder="Write your habit here..."
             />
           </div>
           <div className="flex items-center justify-between gap-4">
@@ -173,10 +168,6 @@ export function Habits() {
               size="sm"
             >
               Create
-            </Button>
-            <Button variant="link" className="text-neutral-400">
-              {" "}
-              cancel
             </Button>
           </div>
         </form>
