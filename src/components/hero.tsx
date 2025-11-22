@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 type Greeting1 = {
   id: number;
   language: string;
