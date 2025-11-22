@@ -113,7 +113,6 @@ export function Habits() {
 
   function handleDelete(id: number) {
     const updatedHabits = habits.filter((habitItem) => habitItem.id !== id);
-    console.log(`hello`);
     setHabits(updatedHabits);
   }
 
@@ -129,6 +128,7 @@ export function Habits() {
   function handleCreate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+
     const title = formData.get("title")?.toString();
     if (!title) return null;
 
@@ -142,6 +142,7 @@ export function Habits() {
     };
 
     setHabits([...habits, newHabit]);
+    event.currentTarget.reset();
   }
 
   return (
