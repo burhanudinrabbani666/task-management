@@ -16,17 +16,14 @@ export function Top() {
     <div className="my-8 flex justify-between px-4">
       <Popover>
         <PopoverTrigger asChild>
-          <Button
-            className="border-none bg-amber-200 text-neutral-600"
-            variant="ghost"
-          >
+          <Button className="bg-amber-100 text-neutral-600" variant="ghost">
             {" "}
             Quote
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="mx-60 h-36">
-          <div className="space-y-2">
-            <div className="flex gap-2">
+        <PopoverContent className="mx-60">
+          <div className="space-y-3">
+            <div className="flex gap-2 border-b border-b-neutral-300 py-2">
               <img src="/public/marcus.png" alt="" />
               <span>Marcus Aurelius</span>
             </div>
