@@ -19,12 +19,11 @@ const greetingData: greetings = [
 ];
 
 export function Hero() {
-  const [greeting, setGreeting] = useState(greetingData);
-  const getId = Math.trunc(Math.random() * greeting.length);
+  const getId = Math.trunc(Math.random() * greetingData.length);
   return (
     <header className="flex flex-col items-center gap-1">
       <div className="flex gap-2 text-2xl">
-        <span>{greeting[getId].greeting}, </span>
+        <span>{greetingData[getId].greeting}, </span>
         <h1 className="font-semibold">Burhanudin</h1>
       </div>
       <p className="opacity-50">
