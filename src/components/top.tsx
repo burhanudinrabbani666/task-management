@@ -21,7 +21,7 @@ export function Top() {
             Quote
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="mx-60">
+        <PopoverContent className="ml-10">
           <div className="space-y-3">
             <div className="flex gap-2 border-b border-b-neutral-300 py-2">
               <img src="/public/marcus.png" alt="" />

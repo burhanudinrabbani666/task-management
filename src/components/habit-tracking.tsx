@@ -47,7 +47,7 @@ export function HabitItemMenu({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size="icon-lg">
+        <Button size="icon-lg" variant="secondary">
           <DotsThreeIcon color="#333" />
         </Button>
       </DropdownMenuTrigger>
@@ -147,13 +147,29 @@ export function Habits() {
   return (
     <div className="flex flex-col items-start justify-between gap-4">
       <div className="flex w-full flex-col gap-4 rounded-sm">
-        <form method="post" onSubmit={handleCreate} className="space-y-4">
+        <form
+          method="post"
+          onSubmit={handleCreate}
+          className="flex flex-col justify-between gap-2 rounded-xl bg-neutral-50 px-4 py-3 indent-1 inset-ring-2 inset-ring-neutral-300"
+        >
           <div>
-            <Label htmlFor="title">Title</Label>
-            <Input id="title" type="text" name="title" />
+            <Label htmlFor="title" className="hidden">
+              Title
+            </Label>
+            <Input
+              id="title"
+              type="text"
+              name="title"
+              className="border-none opacity-50"
+              placeholder="write your Habit Here"
+            />
           </div>
-          <Button type="submit" className="bg-indigo-400">
-            create Habit
+          <Button
+            type="submit"
+            className="w-fit border-none text-neutral-50"
+            variant="default"
+          >
+            Create
           </Button>
         </form>
         <ul className="flex flex-col gap-2">
