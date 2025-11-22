@@ -8,7 +8,7 @@ import {
   BedIcon,
 } from "@phosphor-icons/react";
 import { useState } from "react";
-import { AddHabit } from "./add-habit";
+// import { AddHabit } from "./add-habit";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -33,8 +33,8 @@ const iconData = [BookIcon, HeartIcon, BedIcon];
 
 const habitData: Habits = [
   { id: 1, icon: iconData[0], title: "Study", isDone: false },
-  { id: 3, icon: iconData[1], title: "Meditation", isDone: false },
-  { id: 2, icon: iconData[2], title: "Sleep 6 Hours", isDone: false },
+  { id: 2, icon: iconData[1], title: "Meditation", isDone: false },
+  { id: 3, icon: iconData[2], title: "Sleep 6 Hours", isDone: false },
 ];
 
 export function HabitItemMenu({
@@ -129,19 +129,23 @@ export function Habits() {
   function handleCreate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const title = formData.get("title");
+    const title = formData.get("title")?.toString();
+    if (!title) return null;
+
     const newId = habits.length > 0 ? habits[habits.length - 1].id + 1 : 1;
 
-    const newTask = {
+    const newHabit: Habit = {
       id: newId,
       icon: iconData[Math.trunc(Math.random() * 2)],
       title,
       isDone: false,
     };
+
+    setHabits([...habits, newHabit]);
   }
 
   return (
-    <div className="flex flex-col items-start justify-between gap-4 p-3">
+    <div className="flex flex-col items-start justify-between gap-4">
       <div className="flex w-full flex-col gap-4 rounded-sm">
         <form method="post" onSubmit={handleCreate} className="space-y-4">
           <div>
