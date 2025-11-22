@@ -2,6 +2,7 @@ import "@fontsource-variable/inter";
 import { Dashboard } from "./components/dashboard";
 import { Top } from "./components/top";
 import { Hero } from "./components/hero";
+import { Footer } from "./components/footer";
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
       <Top />
       <Hero />
       <Dashboard />
+      <Footer />
     </div>
   );
 }

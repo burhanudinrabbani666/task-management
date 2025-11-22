@@ -13,7 +13,7 @@ const dayTime = dayjs().format("D MMMM YYYY");
 
 export function Top() {
   return (
-    <div className="my-8 flex justify-between px-4">
+    <div className="my-8 flex items-center justify-between px-4">
       <Popover>
         <PopoverTrigger asChild>
           <Button className="bg-amber-100 text-neutral-600" variant="ghost">

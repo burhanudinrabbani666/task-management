@@ -83,7 +83,7 @@ export function HabitItem({
       className={cn(
         "flex items-baseline justify-between rounded-xl bg-amber-100 px-4 py-3 indent-1 inset-ring-2 inset-ring-neutral-300",
         habit.isDone &&
-          "bg-[url(/public/check-circle.svg)] bg-size-[200px] bg-right bg-no-repeat inset-ring-2 inset-ring-green-700 transition duration-500",
+          "bg-[url(/public/check-circle.svg)] bg-size-[100px] bg-bottom-right bg-no-repeat inset-ring-2 inset-ring-green-700 transition duration-500",
       )}
     >
       <div className="flex flex-col gap-4">
@@ -165,13 +165,20 @@ export function Habits() {
               placeholder="write your Habit Here"
             />
           </div>
-          <Button
-            type="submit"
-            className="w-fit border-none text-neutral-50"
-            variant="default"
-          >
-            Create
-          </Button>
+          <div className="flex items-center justify-between gap-4">
+            <Button
+              type="submit"
+              className="w-fit border-none text-neutral-50"
+              variant="default"
+              size="sm"
+            >
+              Create
+            </Button>
+            <Button variant="link" className="text-neutral-400">
+              {" "}
+              cancel
+            </Button>
+          </div>
         </form>
         <ul className="flex flex-col gap-2">
           {habits.map((habit) => (
