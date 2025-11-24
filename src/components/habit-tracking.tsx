@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   PencilIcon,
   PlusIcon,
@@ -7,18 +8,17 @@ import {
   HeartIcon,
   BedIcon,
 } from "@phosphor-icons/react";
-import { useState } from "react";
-// import { AddHabit } from "./add-habit";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import * as z from "zod";
 
 type Habit = {
   id: number;
@@ -27,7 +27,19 @@ type Habit = {
   isDone: boolean;
 };
 
-type Habits = Habit[];
+// type Habits = Habit[];
+
+const HabitSchema = z.object({
+  id: z.number().positive(),
+  icon: z.any(),
+  title: z.string().min(1).max(30),
+  isDone: z.boolean(),
+});
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const HabitDataSchema = HabitSchema.array();
+
+type Habits = z.infer<typeof HabitDataSchema>;
 
 const iconData = [BookIcon, HeartIcon, BedIcon];
 
@@ -93,7 +105,7 @@ export function HabitItem({
         </div>
         <Button
           className={cn(
-            "active:bg-green-700",
+            "hover:cursor-pointer active:bg-green-700",
             habit.isDone && "border border-green-700 bg-green-700 text-white",
           )}
           variant="ghost"
@@ -126,23 +138,29 @@ export function Habits() {
   }
 
   function handleCreate(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    try {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
 
-    const title = formData.get("title")?.toString();
-    if (!title) return null;
+      const newId = habits.length > 0 ? habits[habits.length - 1].id + 1 : 1;
 
-    const newId = habits.length > 0 ? habits[habits.length - 1].id + 1 : 1;
+      const newHabit: Habit = {
+        id: newId,
+        icon: iconData[Math.trunc(Math.random() * 2)],
+        title: formData.get("title")?.toString().trim() || "",
+        isDone: false,
+      };
+      HabitSchema.parse(newHabit);
 
-    const newHabit: Habit = {
-      id: newId,
-      icon: iconData[Math.trunc(Math.random() * 2)],
-      title,
-      isDone: false,
-    };
-
-    setHabits([...habits, newHabit]);
-    event.currentTarget.reset();
+      setHabits([...habits, newHabit]);
+      event.currentTarget.reset();
+    } catch (error: unknown) {
+      if (error instanceof z.ZodError) {
+        const messages = error.issues.map((i) => `${i.message}`).join("\n");
+        alert(messages);
+        return null;
+      }
+    }
   }
 
   return (
@@ -161,24 +179,19 @@ export function Habits() {
               id="title"
               type="text"
               name="title"
-              className="border-none opacity-50"
-              placeholder="write your Habit Here"
+              className="border-none px-0 opacity-50"
+              required
+              placeholder="Write your habit here..."
             />
           </div>
-          <div className="flex items-center justify-between gap-4">
-            <Button
-              type="submit"
-              className="w-fit border-none text-neutral-50"
-              variant="default"
-              size="sm"
-            >
-              Create
-            </Button>
-            <Button variant="link" className="text-neutral-400">
-              {" "}
-              cancel
-            </Button>
-          </div>
+          <Button
+            type="submit"
+            className="w-fit border-none text-neutral-50 hover:cursor-pointer active:cursor-pointer"
+            variant="default"
+            size="sm"
+          >
+            Create
+          </Button>
         </form>
         <ul className="flex flex-col gap-2">
           {habits.map((habit) => (
