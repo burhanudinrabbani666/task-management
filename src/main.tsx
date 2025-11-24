@@ -11,7 +11,7 @@ createRoot(document.getElementById("root")!).render(
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<App />} />
-        <Route path="/about-habit/:aboutHabit" element={<HabitDetail />} />
+        <Route path="/about-habit/:habitId" element={<HabitDetail />} />
       </Route>
     </Routes>{" "}
   </BrowserRouter>,
