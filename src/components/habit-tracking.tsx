@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  PencilIcon,
   PlusIcon,
   TrashIcon,
   DotsThreeIcon,
@@ -8,6 +7,7 @@ import {
   HeartIcon,
   BedIcon,
   CaretDoubleDownIcon,
+  EyeIcon,
 } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import {
@@ -59,8 +59,8 @@ export function HabitItemMenu({
       <DropdownMenuContent side="left">
         <DropdownMenuItem asChild>
           <Link to={`/about-habit/${id}`}>
-            <PencilIcon />
-            <span>Edit</span>
+            <EyeIcon weight="duotone" />
+            <span>View</span>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
@@ -68,7 +68,7 @@ export function HabitItemMenu({
           <span>Add notes</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => onDelete(id)}>
-          <TrashIcon />
+          <TrashIcon weight="duotone" />
           <span>Delete</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
