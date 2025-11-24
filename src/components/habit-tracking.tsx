@@ -3,9 +3,6 @@ import {
   PlusIcon,
   TrashIcon,
   DotsThreeIcon,
-  BookIcon,
-  HeartIcon,
-  BedIcon,
   CaretDoubleDownIcon,
   EyeIcon,
 } from "@phosphor-icons/react";
@@ -21,26 +18,8 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { Link } from "react-router";
-
-const HabitSchema = z.object({
-  id: z.number().positive(),
-  icon: z.any(),
-  title: z.string().min(1).max(30),
-  isDone: z.boolean(),
-});
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const HabitDataSchema = HabitSchema.array();
-
-type Habits = z.infer<typeof HabitDataSchema>;
-
-const iconData = [BookIcon, HeartIcon, BedIcon];
-
-const habitData: Habits = [
-  { id: 1, icon: iconData[0], title: "Study", isDone: false },
-  { id: 2, icon: iconData[1], title: "Meditation", isDone: false },
-  { id: 3, icon: iconData[2], title: "Sleep 6 Hours", isDone: false },
-];
+import { HabitSchema, type Habits } from "@/modules/habit/schema";
+import { habitIconsData, initialHabitsData } from "@/modules/habit/data";
 
 export function HabitItemMenu({
   id,
@@ -58,7 +37,7 @@ export function HabitItemMenu({
       </DropdownMenuTrigger>
       <DropdownMenuContent side="left">
         <DropdownMenuItem asChild>
-          <Link to={`/about-habit/${id}`}>
+          <Link to={`/habits/${id}`}>
             <EyeIcon weight="duotone" />
             <span>View</span>
           </Link>
@@ -116,7 +95,7 @@ export function HabitItem({
 }
 
 export function Habits() {
-  const [habits, setHabits] = useState(habitData);
+  const [habits, setHabits] = useState(initialHabitsData);
 
   function handleDelete(id: number) {
     const updatedHabits = habits.filter((habitItem) => habitItem.id !== id);
@@ -141,7 +120,7 @@ export function Habits() {
 
       const newHabit: z.infer<typeof HabitSchema> = {
         id: Number(newId),
-        icon: iconData[Math.trunc(Math.random() * 2)],
+        icon: habitIconsData[Math.trunc(Math.random() * 2)],
         title: formData.get("title")?.toString().trim() || "",
         isDone: false,
       };
@@ -174,7 +153,7 @@ export function Habits() {
               id="title"
               type="text"
               name="title"
-              className="border-none px-0 opacity-50"
+              className="border-none px-0 text-xl"
               required
               placeholder="Write your habit here..."
             />
