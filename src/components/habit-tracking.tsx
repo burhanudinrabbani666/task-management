@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
+import { Link } from "react-router";
 
 const HabitSchema = z.object({
   id: z.number().positive(),
@@ -55,10 +56,12 @@ export function HabitItemMenu({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="left">
-        <DropdownMenuItem>
-          <PencilIcon />
-          <span>Edit</span>
-        </DropdownMenuItem>
+        <Link to="/about">
+          <DropdownMenuItem>
+            <PencilIcon />
+            <span>Edit</span>
+          </DropdownMenuItem>
+        </Link>
         <DropdownMenuItem>
           <PlusIcon />
           <span>Add notes</span>
