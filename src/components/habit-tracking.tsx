@@ -193,7 +193,7 @@ export function Habits() {
             Create
           </Button>
         </form>
-        <ul className="flex flex-col gap-2">
+        <ul className="flex h-96 flex-col gap-2 overflow-scroll">
           {habits.map((habit) => (
             <HabitItem
               key={habit.id}
