@@ -7,6 +7,7 @@ import {
   BookIcon,
   HeartIcon,
   BedIcon,
+  CaretDoubleDownIcon,
 } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import {
@@ -56,12 +57,12 @@ export function HabitItemMenu({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="left">
-        <Link to="about-habit">
-          <DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link to={`/about-habit/${id}`}>
             <PencilIcon />
             <span>Edit</span>
-          </DropdownMenuItem>
-        </Link>
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuItem>
           <PlusIcon />
           <span>Add notes</span>
@@ -158,7 +159,7 @@ export function Habits() {
   }
 
   return (
-    <div className="flex flex-col items-start justify-between gap-4">
+    <div className="flex justify-center gap-4">
       <div className="flex w-full flex-col gap-4 rounded-sm">
         <form
           method="post"
@@ -187,16 +188,26 @@ export function Habits() {
             Create
           </Button>
         </form>
-        <ul className="flex h-96 flex-col gap-2 overflow-scroll">
-          {habits.map((habit) => (
-            <HabitItem
-              key={habit.id}
-              habit={habit}
-              onDelete={handleDelete}
-              onToogleDone={handleToogleDone}
-            />
-          ))}
-        </ul>
+        <div className="h-80 overflow-scroll">
+          <ul className="flex flex-col-reverse gap-2">
+            {habits.map((habit) => (
+              <HabitItem
+                key={habit.id}
+                habit={habit}
+                onDelete={handleDelete}
+                onToogleDone={handleToogleDone}
+              />
+            ))}
+          </ul>
+        </div>
+        <div
+          className={cn(
+            "flex items-center justify-center gap-4 opacity-0",
+            habits.length > 3 && "opacity-50",
+          )}
+        >
+          <span>Scroll</span> <CaretDoubleDownIcon />
+        </div>
       </div>
     </div>
   );
