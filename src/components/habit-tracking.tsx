@@ -20,15 +20,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 
-type Habit = {
-  id: number;
-  icon: React.ElementType;
-  title: string;
-  isDone: boolean;
-};
-
-// type Habits = Habit[];
-
 const HabitSchema = z.object({
   id: z.number().positive(),
   icon: z.any(),
@@ -86,7 +77,7 @@ export function HabitItem({
   onDelete,
   onToogleDone,
 }: {
-  habit: Habit;
+  habit: z.infer<typeof HabitSchema>;
   onDelete: (id: number) => void;
   onToogleDone: (id: number) => void;
 }) {
@@ -144,8 +135,8 @@ export function Habits() {
 
       const newId = habits.length > 0 ? habits[habits.length - 1].id + 1 : 1;
 
-      const newHabit: Habit = {
-        id: newId,
+      const newHabit: z.infer<typeof HabitSchema> = {
+        id: Number(newId),
         icon: iconData[Math.trunc(Math.random() * 2)],
         title: formData.get("title")?.toString().trim() || "",
         isDone: false,
