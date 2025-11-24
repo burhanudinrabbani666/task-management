@@ -56,7 +56,7 @@ export function HabitItemMenu({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="left">
-        <Link to="/about">
+        <Link to="about-habit">
           <DropdownMenuItem>
             <PencilIcon />
             <span>Edit</span>

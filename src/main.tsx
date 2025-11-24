@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 
 import "@/index.css";
 import App from "@/app.tsx";
-import { About } from "@/components/routes/about.tsx";
+import { HabitDetail } from "@/components/routes/about-habit";
 import { Layout } from "@/components/layouts/layout";
 
 createRoot(document.getElementById("root")!).render(
@@ -11,7 +11,7 @@ createRoot(document.getElementById("root")!).render(
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<App />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about-habit/:aboutHabit" element={<HabitDetail />} />
       </Route>
     </Routes>{" "}
   </BrowserRouter>,

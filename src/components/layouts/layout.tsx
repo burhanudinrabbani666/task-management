@@ -5,7 +5,7 @@ import { Footer } from "../footer";
 
 export function Layout() {
   return (
-    <div>
+    <div className="flex min-h-screen flex-col">
       <header className="mb-18 flex flex-col gap-10">
         <Top />
         <Hero />
