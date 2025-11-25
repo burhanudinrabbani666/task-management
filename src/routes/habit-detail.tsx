@@ -34,7 +34,7 @@ export function HabitDetail() {
           if (!habit) return <div>Habit not found</div>;
           const Icon = habit.icon;
           return (
-            <div className="flex items-center space-x-3">
+            <div className="flex w-full items-center gap-8 border px-2">
               <Icon size={32} />
               <span className="text-lg font-semibold">{habit.title}</span>
               <span>{habit.isDone ? "Done" : "Not Done"}</span>

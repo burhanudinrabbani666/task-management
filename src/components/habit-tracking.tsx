@@ -24,19 +24,30 @@ import * as z from "zod";
 import { Link } from "react-router";
 import { type Habits, HabitSchema } from "@/components/modules/habit/schema";
 import { Alert, AlertTitle } from "./ui/alert";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
-const iconData = [BookIcon, HeartIcon, BedIcon];
-// const icons = [
-//   { id: 1, name: "bookicon", iconSlug: BookIcon },
-//   { id: 2, name: "hearticon", iconSlug: HeartIcon },
-//   { id: 3, name: "bedicon", iconSlug: BedIcon },
-// ];
+const icons = [
+  { id: 1, name: "bookicon", iconSlug: BookIcon },
+  { id: 2, name: "hearticon", iconSlug: HeartIcon },
+  { id: 3, name: "bedicon", iconSlug: BedIcon },
+];
 
 const IntialHabitData: Habits = [
-  { id: 1, icon: iconData[0], title: "Study", isDone: false },
-  { id: 2, icon: iconData[1], title: "Meditation", isDone: false },
-  { id: 3, icon: iconData[2], title: "Sleep 6 Hours", isDone: false },
+  { id: 1, icon: getIcon(1), title: "Study", isDone: false },
+  { id: 2, icon: getIcon(2), title: "Meditation", isDone: false },
+  { id: 3, icon: getIcon(3), title: "Sleep 6 Hours", isDone: false },
 ];
+
+function getIcon(idIcon: number) {
+  const getIconObj = icons.find((icon) => icon.id === idIcon);
+  return getIconObj?.iconSlug;
+}
 
 export function HabitItemMenu({
   id,
@@ -113,7 +124,6 @@ export function HabitItem({
 
 export function Habits() {
   const [habits, setHabits] = useState(IntialHabitData);
-
   function handleDelete(id: number) {
     const updatedHabits = habits.filter((habitItem) => habitItem.id !== id);
     setHabits(updatedHabits);
@@ -133,12 +143,13 @@ export function Habits() {
       event.preventDefault();
       console.log(event);
       const formData = new FormData(event.currentTarget);
+      const icon = formData.get("icon-input");
 
       const newId = habits.length > 0 ? habits[habits.length - 1].id + 1 : 1;
 
       const newHabit: z.infer<typeof HabitSchema> = {
         id: Number(newId),
-        icon: iconData[Math.trunc(Math.random() * 2)],
+        icon: getIcon(Number(icon)),
         title: formData.get("title")?.toString().trim() || "",
         isDone: false,
       };
@@ -169,39 +180,22 @@ export function Habits() {
           onSubmit={handleCreate}
           className="flex flex-col justify-between gap-2 rounded-xl bg-neutral-50 px-4 py-3 indent-1 inset-ring-2 inset-ring-neutral-300"
         >
-          <div className="flex gap-5 px-1">
-            {/* For icon */}
-            {/*<label htmlFor="icon">
-              <select id="icon">
-                {icons.map((icon) => (
-                  <option key={icon.id} value={icon.name}>
-                    <icon.iconSlug size={20} weight="duotone" />
-                  </option>
-                ))}
-                  <DropdownMenu id>
-                  <DropdownMenuTrigger>
-                    <PlusIcon />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent asChild>
-                    <div>
-                      {icons.map((icon) => (
-                        <DropdownMenuItem key={icon.id}>
-                          <icon.icon
-                            size={24}
-                            weight="duotone"
-                            values={icon.name}
-                          />
-                        </DropdownMenuItem>
-                      ))}
-                    </div>
-                  </DropdownMenuContent>
-                </DropdownMenu> 
-              </select>
-            </label>*/}
-            {/* For string */}
+          <div className="flex items-center gap-5">
             <Label htmlFor="title" className="hidden">
               Title
             </Label>
+            <Select name="icon-input">
+              <SelectTrigger>
+                <SelectValue placeholder={<PlusIcon />}></SelectValue>
+              </SelectTrigger>
+              <SelectContent side="top">
+                {icons.map((iconItem) => (
+                  <SelectItem key={iconItem.id} value={String(iconItem.id)}>
+                    <iconItem.iconSlug />
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <Input
               id="title"
               type="text"
