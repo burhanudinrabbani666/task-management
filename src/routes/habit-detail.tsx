@@ -1,24 +1,12 @@
 import { Link, useParams } from "react-router";
-import { Button } from "../ui/button";
+import { Button } from "../components/ui/button";
 import {
   ArrowLeftIcon,
   BedIcon,
   BookIcon,
   HeartIcon,
 } from "@phosphor-icons/react";
-import z from "zod";
-
-const HabitSchema = z.object({
-  id: z.number().positive(),
-  icon: z.any(),
-  title: z.string().min(1).max(30),
-  isDone: z.boolean(),
-});
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const HabitDataSchema = HabitSchema.array();
-
-type Habits = z.infer<typeof HabitDataSchema>;
+import type { Habits } from "@/components/modules/habit/schema";
 
 const iconData = [BookIcon, HeartIcon, BedIcon];
 
@@ -41,7 +29,18 @@ export function HabitDetail() {
         </Link>
       </Button>
       <div>
-        <h2>{habitData[idData - 1].title}</h2>
+        {(() => {
+          const habit = habitData.find((habit) => habit.id === idData);
+          if (!habit) return <div>Habit not found</div>;
+          const Icon = habit.icon;
+          return (
+            <div className="flex items-center space-x-3">
+              <Icon size={32} />
+              <span className="text-lg font-semibold">{habit.title}</span>
+              <span>{habit.isDone ? "Done" : "Not Done"}</span>
+            </div>
+          );
+        })()}
       </div>
     </div>
   );

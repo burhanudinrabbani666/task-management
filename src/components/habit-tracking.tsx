@@ -8,6 +8,7 @@ import {
   BedIcon,
   CaretDoubleDownIcon,
   EyeIcon,
+  WarningIcon,
 } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import {
@@ -21,22 +22,17 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { Link } from "react-router";
-
-const HabitSchema = z.object({
-  id: z.number().positive(),
-  icon: z.any(),
-  title: z.string().min(1).max(30),
-  isDone: z.boolean(),
-});
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const HabitDataSchema = HabitSchema.array();
-
-type Habits = z.infer<typeof HabitDataSchema>;
+import { type Habits, HabitSchema } from "@/components/modules/habit/schema";
+import { Alert, AlertTitle } from "./ui/alert";
 
 const iconData = [BookIcon, HeartIcon, BedIcon];
+// const icons = [
+//   { id: 1, name: "bookicon", iconSlug: BookIcon },
+//   { id: 2, name: "hearticon", iconSlug: HeartIcon },
+//   { id: 3, name: "bedicon", iconSlug: BedIcon },
+// ];
 
-const habitData: Habits = [
+const IntialHabitData: Habits = [
   { id: 1, icon: iconData[0], title: "Study", isDone: false },
   { id: 2, icon: iconData[1], title: "Meditation", isDone: false },
   { id: 3, icon: iconData[2], title: "Sleep 6 Hours", isDone: false },
@@ -116,7 +112,7 @@ export function HabitItem({
 }
 
 export function Habits() {
-  const [habits, setHabits] = useState(habitData);
+  const [habits, setHabits] = useState(IntialHabitData);
 
   function handleDelete(id: number) {
     const updatedHabits = habits.filter((habitItem) => habitItem.id !== id);
@@ -135,6 +131,7 @@ export function Habits() {
   function handleCreate(event: React.FormEvent<HTMLFormElement>) {
     try {
       event.preventDefault();
+      console.log(event);
       const formData = new FormData(event.currentTarget);
 
       const newId = habits.length > 0 ? habits[habits.length - 1].id + 1 : 1;
@@ -152,8 +149,14 @@ export function Habits() {
     } catch (error: unknown) {
       if (error instanceof z.ZodError) {
         const messages = error.issues.map((i) => `${i.message}`).join("\n");
-        alert(messages);
-        return null;
+        return (
+          <div>
+            <Alert>
+              <WarningIcon />
+              <AlertTitle>{messages}</AlertTitle>
+            </Alert>
+          </div>
+        );
       }
     }
   }
@@ -166,7 +169,36 @@ export function Habits() {
           onSubmit={handleCreate}
           className="flex flex-col justify-between gap-2 rounded-xl bg-neutral-50 px-4 py-3 indent-1 inset-ring-2 inset-ring-neutral-300"
         >
-          <div>
+          <div className="flex gap-5 px-1">
+            {/* For icon */}
+            {/*<label htmlFor="icon">
+              <select id="icon">
+                {icons.map((icon) => (
+                  <option key={icon.id} value={icon.name}>
+                    <icon.iconSlug size={20} weight="duotone" />
+                  </option>
+                ))}
+                  <DropdownMenu id>
+                  <DropdownMenuTrigger>
+                    <PlusIcon />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent asChild>
+                    <div>
+                      {icons.map((icon) => (
+                        <DropdownMenuItem key={icon.id}>
+                          <icon.icon
+                            size={24}
+                            weight="duotone"
+                            values={icon.name}
+                          />
+                        </DropdownMenuItem>
+                      ))}
+                    </div>
+                  </DropdownMenuContent>
+                </DropdownMenu> 
+              </select>
+            </label>*/}
+            {/* For string */}
             <Label htmlFor="title" className="hidden">
               Title
             </Label>
@@ -174,7 +206,7 @@ export function Habits() {
               id="title"
               type="text"
               name="title"
-              className="border-none px-0 opacity-50"
+              className="border-none px-0 text-lg"
               required
               placeholder="Write your habit here..."
             />
