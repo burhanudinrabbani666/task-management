@@ -3,18 +3,8 @@ import {
   PlusIcon,
   TrashIcon,
   DotsThreeIcon,
-  BookIcon,
-  HeartIcon,
-  BedIcon,
   CaretDoubleDownIcon,
   EyeIcon,
-  BasketballIcon,
-  PintGlassIcon,
-  FootprintsIcon,
-  GameControllerIcon,
-  HandsPrayingIcon,
-  BarbellIcon,
-  DesktopIcon,
 } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import {
@@ -37,25 +27,11 @@ import {
   SelectValue,
 } from "./ui/select";
 import { toast } from "sonner";
+import { iconsInt, IntialHabitData } from "@/lib/initial-data";
 
-const icons = [
-  { id: 1, name: "book icon", iconSlug: BookIcon },
-  { id: 2, name: "heart icon", iconSlug: HeartIcon },
-  { id: 3, name: "bed icon", iconSlug: BedIcon },
-  { id: 4, name: "game controller icon", iconSlug: GameControllerIcon },
-  { id: 5, name: "basketball icon", iconSlug: BasketballIcon },
-  { id: 6, name: "pint glass icon", iconSlug: PintGlassIcon },
-  { id: 7, name: "footprint icon", iconSlug: FootprintsIcon },
-  { id: 8, name: "handspraying icon", iconSlug: HandsPrayingIcon },
-  { id: 9, name: "desktop icon", iconSlug: DesktopIcon },
-  { id: 10, name: "barbell icon", iconSlug: BarbellIcon },
-];
-
-const IntialHabitData: Habits = [
-  { id: 1, icon: getIcon(1), title: "Study", isDone: false },
-  { id: 2, icon: getIcon(2), title: "Meditation", isDone: false },
-  { id: 3, icon: getIcon(3), title: "Sleep 6 Hours", isDone: false },
-];
+// initial
+const icons = iconsInt;
+const habiData = IntialHabitData;
 
 function getIcon(idIcon: number) {
   const getIconObj = icons.find((icon) => icon.id === idIcon);
@@ -78,7 +54,7 @@ export function HabitItemMenu({
       </DropdownMenuTrigger>
       <DropdownMenuContent side="left">
         <DropdownMenuItem asChild>
-          <Link to={`/about-habit/${id}`}>
+          <Link to={`/habit/${id}`}>
             <EyeIcon weight="duotone" />
             <span>View</span>
           </Link>
@@ -136,7 +112,7 @@ export function HabitItem({
 }
 
 export function Habits() {
-  const [habits, setHabits] = useState(IntialHabitData);
+  const [habits, setHabits] = useState(habiData);
   function handleDelete(id: number) {
     const updatedHabits = habits.filter((habitItem) => habitItem.id !== id);
     setHabits(updatedHabits);

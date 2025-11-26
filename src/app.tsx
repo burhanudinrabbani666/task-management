@@ -13,7 +13,7 @@ export default function App() {
         ease: [0, 0.71, 0.2, 1.01],
       }}
     >
-      <div className="flex max-w-2xl flex-col gap-20">
+      <div className="flex max-w-2xl flex-col">
         <Dashboard />
       </div>
     </motion.div>

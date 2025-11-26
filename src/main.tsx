@@ -13,7 +13,7 @@ createRoot(document.getElementById("root")!).render(
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<App />} />
-        <Route path="/about-habit/:habitId" element={<HabitDetail />} />
+        <Route path="/habit/:habitId" element={<HabitDetail />} />
       </Route>
     </Routes>{" "}
   </BrowserRouter>,
