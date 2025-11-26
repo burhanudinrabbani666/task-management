@@ -8,7 +8,13 @@ import {
   BedIcon,
   CaretDoubleDownIcon,
   EyeIcon,
-  WarningIcon,
+  BasketballIcon,
+  PintGlassIcon,
+  FootprintsIcon,
+  GameControllerIcon,
+  HandsPrayingIcon,
+  BarbellIcon,
+  DesktopIcon,
 } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import {
@@ -23,7 +29,6 @@ import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { Link } from "react-router";
 import { type Habits, HabitSchema } from "@/components/modules/habit/schema";
-import { Alert, AlertTitle } from "./ui/alert";
 import {
   Select,
   SelectContent,
@@ -31,11 +36,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { toast } from "sonner";
 
 const icons = [
-  { id: 1, name: "bookicon", iconSlug: BookIcon },
-  { id: 2, name: "hearticon", iconSlug: HeartIcon },
-  { id: 3, name: "bedicon", iconSlug: BedIcon },
+  { id: 1, name: "book icon", iconSlug: BookIcon },
+  { id: 2, name: "heart icon", iconSlug: HeartIcon },
+  { id: 3, name: "bed icon", iconSlug: BedIcon },
+  { id: 4, name: "game controller icon", iconSlug: GameControllerIcon },
+  { id: 5, name: "basketball icon", iconSlug: BasketballIcon },
+  { id: 6, name: "pint glass icon", iconSlug: PintGlassIcon },
+  { id: 7, name: "footprint icon", iconSlug: FootprintsIcon },
+  { id: 8, name: "handspraying icon", iconSlug: HandsPrayingIcon },
+  { id: 9, name: "desktop icon", iconSlug: DesktopIcon },
+  { id: 10, name: "barbell icon", iconSlug: BarbellIcon },
 ];
 
 const IntialHabitData: Habits = [
@@ -160,15 +173,9 @@ export function Habits() {
     } catch (error: unknown) {
       if (error instanceof z.ZodError) {
         const messages = error.issues.map((i) => `${i.message}`).join("\n");
-        return (
-          <div>
-            <Alert>
-              <WarningIcon />
-              <AlertTitle>{messages}</AlertTitle>
-            </Alert>
-          </div>
-        );
+        toast.error(messages);
       }
+      event.currentTarget.reset();
     }
   }
 
@@ -178,20 +185,20 @@ export function Habits() {
         <form
           method="post"
           onSubmit={handleCreate}
-          className="flex flex-col justify-between gap-2 rounded-xl bg-neutral-50 px-4 py-3 indent-1 inset-ring-2 inset-ring-neutral-300"
+          className="flex flex-col justify-between gap-4 rounded-xl bg-neutral-50 px-4 py-3 indent-1 inset-ring-2 inset-ring-neutral-300"
         >
           <div className="flex items-center gap-5">
             <Label htmlFor="title" className="hidden">
               Title
             </Label>
-            <Select name="icon-input">
+            <Select name="icon-input" required>
               <SelectTrigger>
                 <SelectValue placeholder={<PlusIcon />}></SelectValue>
               </SelectTrigger>
               <SelectContent side="top">
                 {icons.map((iconItem) => (
                   <SelectItem key={iconItem.id} value={String(iconItem.id)}>
-                    <iconItem.iconSlug />
+                    <iconItem.iconSlug weight="duotone" />
                   </SelectItem>
                 ))}
               </SelectContent>
