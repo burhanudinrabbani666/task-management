@@ -1,6 +1,7 @@
 import "@fontsource-variable/inter";
 import { Dashboard } from "./components/dashboard";
 import { motion } from "motion/react";
+import { TimerInternal } from "@/modules/timer/timer-inernal";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       }}
     >
       <div className="flex max-w-2xl flex-col">
+        <TimerInternal />
         <Dashboard />
       </div>
     </motion.div>

@@ -1,4 +1,4 @@
-import { type Habits } from "@/components/modules/habit/schema";
+import { type Habits } from "@/modules/habit/schema";
 
 import {
   BookIcon,

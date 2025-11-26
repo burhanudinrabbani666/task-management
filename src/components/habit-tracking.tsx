@@ -18,7 +18,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { Link } from "react-router";
-import { type Habits, HabitSchema } from "@/components/modules/habit/schema";
+import { type Habits, HabitSchema } from "@/modules/habit/schema";
 import {
   Select,
   SelectContent,

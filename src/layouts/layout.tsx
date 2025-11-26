@@ -1,7 +1,7 @@
+import { Footer } from "@/components/footer";
+import { Hero } from "@/components/hero";
+import { Top } from "@/components/top";
 import { Outlet } from "react-router";
-import { Hero } from "../hero";
-import { Top } from "../top";
-import { Footer } from "../footer";
 
 export function Layout() {
   return (

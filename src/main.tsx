@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import "@/index.css";
 import App from "@/app.tsx";
 import { HabitDetail } from "@/routes/habit-detail";
-import { Layout } from "@/components/layouts/layout";
+import { Layout } from "@/layouts/layout";
 import { Toaster } from "@/components/ui/sonner";
 
 createRoot(document.getElementById("root")!).render(
