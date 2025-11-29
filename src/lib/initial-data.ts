@@ -36,3 +36,5 @@ function getIcon(idIcon: number) {
   const getIconObj = iconsInt.find((icon) => icon.id === idIcon);
   return getIconObj?.iconSlug;
 }
+
+localStorage.setItem("habit", JSON.stringify(IntialHabitData));

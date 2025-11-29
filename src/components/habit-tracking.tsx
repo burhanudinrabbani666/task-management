@@ -18,7 +18,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { Link } from "react-router";
-import { type Habits, HabitSchema } from "@/modules/habit/schema";
+import { HabitSchema, type Habit, type Habits } from "@/modules/habit/schema";
 import {
   Select,
   SelectContent,
@@ -114,7 +114,9 @@ export function HabitItem({
 export function Habits() {
   const [habits, setHabits] = useState(habiData);
   function handleDelete(id: number) {
-    const updatedHabits = habits.filter((habitItem) => habitItem.id !== id);
+    const updatedHabits = habits.filter(
+      (habitItem: Habit) => habitItem.id !== id,
+    );
     setHabits(updatedHabits);
   }
 
@@ -123,20 +125,18 @@ export function Habits() {
       if (habit.id === id) return { ...habit, isDone: !habit.isDone };
       else return habit;
     });
-
     setHabits(updatedHabits);
   }
 
   function handleCreate(event: React.FormEvent<HTMLFormElement>) {
     try {
       event.preventDefault();
-      console.log(event);
       const formData = new FormData(event.currentTarget);
       const icon = formData.get("icon-input");
 
       const newId = habits.length > 0 ? habits[habits.length - 1].id + 1 : 1;
 
-      const newHabit: z.infer<typeof HabitSchema> = {
+      const newHabit: Habit = {
         id: Number(newId),
         icon: getIcon(Number(icon)),
         title: formData.get("title")?.toString().trim() || "",
@@ -199,7 +199,7 @@ export function Habits() {
         </form>
         <div className="h-80 overflow-scroll">
           <ul className="flex flex-col-reverse gap-2">
-            {habits.map((habit) => (
+            {habits.map((habit: Habit) => (
               <HabitItem
                 key={habit.id}
                 habit={habit}

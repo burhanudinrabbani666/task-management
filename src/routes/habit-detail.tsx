@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { IntialHabitData } from "@/lib/initial-data";
 
 const habitData = IntialHabitData;
-
 export function HabitDetail() {
   const params = useParams();
   const { habitId } = params;
@@ -23,7 +22,6 @@ export function HabitDetail() {
           const habit = habitData.find((habit) => habit.id === idData);
           if (!habit) return <div>Habit not found</div>;
           const Icon = habit.icon;
-          console.log(habit.isDone);
           return (
             <div
               className={cn(
