@@ -2,7 +2,7 @@ import z from "zod";
 
 export const HabitSchema = z.object({
   id: z.number().positive(),
-  icon: z.any(),
+  iconId: z.number(),
   title: z
     .string()
     .min(1, "Invalid Data: Habit title minimum 1 character")

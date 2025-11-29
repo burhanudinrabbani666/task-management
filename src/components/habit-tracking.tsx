@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   PlusIcon,
   TrashIcon,
@@ -27,16 +27,11 @@ import {
   SelectValue,
 } from "./ui/select";
 import { toast } from "sonner";
-import { iconsInt, IntialHabitData } from "@/lib/initial-data";
+import { getIcon, iconLib, IntialHabitData } from "@/lib/initial-data";
 
 // initial
-const icons = iconsInt;
-const habiData = IntialHabitData;
-
-function getIcon(idIcon: number) {
-  const getIconObj = icons.find((icon) => icon.id === idIcon);
-  return getIconObj?.iconSlug;
-}
+const icons = iconLib;
+const habitData = IntialHabitData;
 
 export function HabitItemMenu({
   id,
@@ -72,15 +67,16 @@ export function HabitItemMenu({
   );
 }
 
-export function HabitItem({
+function HabitItem({
   habit,
   onDelete,
   onToogleDone,
 }: {
-  habit: z.infer<typeof HabitSchema>;
+  habit: Habit;
   onDelete: (id: number) => void;
   onToogleDone: (id: number) => void;
 }) {
+  const Icon = getIcon(habit.iconId);
   return (
     <li
       className={cn(
@@ -91,7 +87,7 @@ export function HabitItem({
     >
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-3">
-          <habit.icon size={28} weight="duotone" />
+          <Icon size={28} weight="duotone" />
           <span className="text-lg font-semibold">{habit.title}</span>
         </div>
         <Button
@@ -112,7 +108,15 @@ export function HabitItem({
 }
 
 export function Habits() {
-  const [habits, setHabits] = useState(habiData);
+  const [habits, setHabits] = useState(() => {
+    const storedHabit = localStorage.getItem("habits");
+    return storedHabit ? (JSON.parse(storedHabit) as Habits) : habitData;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("habits", JSON.stringify(habits));
+  }, [habits]);
+
   function handleDelete(id: number) {
     const updatedHabits = habits.filter(
       (habitItem: Habit) => habitItem.id !== id,
@@ -132,13 +136,13 @@ export function Habits() {
     try {
       event.preventDefault();
       const formData = new FormData(event.currentTarget);
-      const icon = formData.get("icon-input");
+      const icon = Number(formData.get("icon-input"));
 
       const newId = habits.length > 0 ? habits[habits.length - 1].id + 1 : 1;
 
       const newHabit: Habit = {
         id: Number(newId),
-        icon: getIcon(Number(icon)),
+        iconId: icon,
         title: formData.get("title")?.toString().trim() || "",
         isDone: false,
       };
@@ -169,12 +173,12 @@ export function Habits() {
             </Label>
             <Select name="icon-input" required>
               <SelectTrigger>
-                <SelectValue placeholder={<PlusIcon />}></SelectValue>
+                <SelectValue placeholder="Icon"></SelectValue>
               </SelectTrigger>
               <SelectContent side="top">
-                {icons.map((iconItem) => (
-                  <SelectItem key={iconItem.id} value={String(iconItem.id)}>
-                    <iconItem.iconSlug weight="duotone" />
+                {Object.entries(icons).map(([id, Icon]) => (
+                  <SelectItem key={id} value={String(id)}>
+                    <Icon weight="duotone" />
                   </SelectItem>
                 ))}
               </SelectContent>

@@ -13,28 +13,25 @@ import {
   DesktopIcon,
 } from "@phosphor-icons/react";
 
-export const iconsInt = [
-  { id: 1, name: "book icon", iconSlug: BookIcon },
-  { id: 2, name: "heart icon", iconSlug: HeartIcon },
-  { id: 3, name: "bed icon", iconSlug: BedIcon },
-  { id: 4, name: "game controller icon", iconSlug: GameControllerIcon },
-  { id: 5, name: "basketball icon", iconSlug: BasketballIcon },
-  { id: 6, name: "pint glass icon", iconSlug: PintGlassIcon },
-  { id: 7, name: "footprint icon", iconSlug: FootprintsIcon },
-  { id: 8, name: "handspraying icon", iconSlug: HandsPrayingIcon },
-  { id: 9, name: "desktop icon", iconSlug: DesktopIcon },
-  { id: 10, name: "barbell icon", iconSlug: BarbellIcon },
-];
+export const iconLib: Record<number, React.ElementType> = {
+  1: BookIcon,
+  2: HeartIcon,
+  3: BedIcon,
+  4: GameControllerIcon,
+  5: BasketballIcon,
+  6: PintGlassIcon,
+  7: FootprintsIcon,
+  8: HandsPrayingIcon,
+  9: DesktopIcon,
+  10: BarbellIcon,
+};
 
 export const IntialHabitData: Habits = [
-  { id: 1, icon: getIcon(1), title: "Study", isDone: false },
-  { id: 2, icon: getIcon(2), title: "Meditation", isDone: false },
-  { id: 3, icon: getIcon(3), title: "Sleep 6 Hours", isDone: false },
+  { id: 1, iconId: 1, title: "Study", isDone: false },
+  { id: 2, iconId: 2, title: "Meditation", isDone: false },
+  { id: 3, iconId: 3, title: "Sleep 6 Hours", isDone: false },
 ];
 
-function getIcon(idIcon: number) {
-  const getIconObj = iconsInt.find((icon) => icon.id === idIcon);
-  return getIconObj?.iconSlug;
+export function getIcon(id: number) {
+  return iconLib[id] || iconLib[1];
 }
-
-localStorage.setItem("habit", JSON.stringify(IntialHabitData));
