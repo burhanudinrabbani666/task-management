@@ -3,9 +3,13 @@ import { Button } from "../components/ui/button";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import { getIcon, IntialHabitData } from "@/lib/initial-data";
+import type { Habit } from "@/modules/habit/schema";
 
-const habitData = IntialHabitData;
 export function HabitDetail() {
+  const habitData = localStorage.getItem("habits")
+    ? JSON.parse(localStorage.getItem("habits")!)
+    : IntialHabitData;
+
   const params = useParams();
   const { habitId } = params;
   const idData = Number(habitId);
@@ -19,7 +23,7 @@ export function HabitDetail() {
       </Button>
       <div>
         {(() => {
-          const habit = habitData.find((habit) => habit.id === idData);
+          const habit = habitData.find((habit: Habit) => habit.id === idData);
           if (!habit) return <div>Habit not found</div>;
           const Icon = getIcon(habit.iconId);
           return (
