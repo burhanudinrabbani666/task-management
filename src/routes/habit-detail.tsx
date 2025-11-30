@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router";
 import { Button } from "../components/ui/button";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
-import { IntialHabitData } from "@/lib/initial-data";
+import { getIcon, IntialHabitData } from "@/lib/initial-data";
 
 const habitData = IntialHabitData;
 export function HabitDetail() {
@@ -21,7 +21,7 @@ export function HabitDetail() {
         {(() => {
           const habit = habitData.find((habit) => habit.id === idData);
           if (!habit) return <div>Habit not found</div>;
-          const Icon = habit.icon;
+          const Icon = getIcon(habit.iconId);
           return (
             <div
               className={cn(
