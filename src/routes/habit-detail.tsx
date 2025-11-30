@@ -2,17 +2,24 @@ import { Link, useParams } from "react-router";
 import { Button } from "../components/ui/button";
 import { ArrowLeftIcon, PlusIcon, TrashIcon } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
-import { getIcon, IntialHabitData } from "@/lib/initial-data";
+import { getIcon } from "@/lib/initial-data";
 import type { Habit } from "@/modules/habit/schema";
 
 export function HabitDetail() {
-  const habitData = localStorage.getItem("habits")
-    ? JSON.parse(localStorage.getItem("habits")!)
-    : IntialHabitData;
-
   const params = useParams();
   const { habitId } = params;
   const idData = Number(habitId);
+
+  // Get habit data from local storageb
+  const habitData = localStorage.getItem("habits");
+  if (!habitData) {
+    return (
+      <div>
+        <span> Habit unavaible</span>
+      </div>
+    );
+  }
+  const parsedHabit = JSON.parse(habitData) as Habit[];
 
   return (
     <div className="space-y-5 px-6">
@@ -23,7 +30,7 @@ export function HabitDetail() {
       </Button>
       <div>
         {(() => {
-          const habit = habitData.find((habit: Habit) => habit.id === idData);
+          const habit = parsedHabit.find((habit) => habit.id === idData);
           if (!habit) return <div>Habit not found</div>;
           const Icon = getIcon(habit.iconId);
           return (
