@@ -1,4 +1,4 @@
-# Habit
+# Habit Tracker
 
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
@@ -11,20 +11,23 @@ A simple and clean Habit Tracking application designed to help users maintain th
 
 ## ✨ Features
 
-- **Add Habit** — easily create new habits.
-- **Mark as Done** — click to toggle daily completion.
-- **Daily Quotes** — displays motivational quotes to inspire the user.
+- Add Habit — easily create new habits.
+- Mark as Done — click to toggle daily completion.
+- Daily Quotes — displays motivational quotes to inspire the user.
 
 ## 🛠️ Technologies Used
 
-- **HTML**
-- **Tailwind CSS**
-- **React**
-- **TypeScript**
+- HTML
+- Tailwind CSS
+- React
+- TypeScript
 
 ## 🚀 Deployment
 
-This project is deployed on **Netlify**.
+This project is deployed on Netlify:
+
+- http://...? (domain)
+- http://...? (deloyment)
 
 ## 🗺️ Roadmap
 
@@ -39,4 +42,4 @@ Planned improvements and upcoming features:
 
 ## 📄 License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the MIT License.
