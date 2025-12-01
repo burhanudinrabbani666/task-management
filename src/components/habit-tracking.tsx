@@ -3,7 +3,6 @@ import {
   PlusIcon,
   TrashIcon,
   DotsThreeIcon,
-  CaretDoubleDownIcon,
   EyeIcon,
 } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
@@ -145,6 +144,7 @@ export function Habits() {
         iconId: icon,
         title: formData.get("title")?.toString().trim() || "",
         isDone: false,
+        notes: [],
       };
       HabitSchema.parse(newHabit);
 
@@ -201,26 +201,17 @@ export function Habits() {
             Create
           </Button>
         </form>
-        <div className="h-80 overflow-scroll">
-          <ul className="flex flex-col-reverse gap-2">
-            {habits.map((habit: Habit) => (
-              <HabitItem
-                key={habit.id}
-                habit={habit}
-                onDelete={handleDelete}
-                onToogleDone={handleToogleDone}
-              />
-            ))}
-          </ul>
-        </div>
-        <div
-          className={cn(
-            "flex items-center justify-center gap-4 opacity-0",
-            habits.length > 3 && "opacity-50",
-          )}
-        >
-          <span>Scroll</span> <CaretDoubleDownIcon />
-        </div>
+
+        <ul className="flex flex-col-reverse gap-2">
+          {habits.map((habit: Habit) => (
+            <HabitItem
+              key={habit.id}
+              habit={habit}
+              onDelete={handleDelete}
+              onToogleDone={handleToogleDone}
+            />
+          ))}
+        </ul>
       </div>
     </div>
   );

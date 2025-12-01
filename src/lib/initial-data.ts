@@ -27,9 +27,42 @@ export const iconLib: Record<number, React.ElementType> = {
 };
 
 export const IntialHabitData: Habits = [
-  { id: 1, iconId: 1, title: "Study", isDone: false },
-  { id: 2, iconId: 2, title: "Meditation", isDone: false },
-  { id: 3, iconId: 3, title: "Sleep 6 Hours", isDone: false },
+  {
+    id: 1,
+    iconId: 1,
+    title: "Study",
+    isDone: false,
+    notes: [
+      {
+        id: 1,
+        content: "akslkakslaik",
+      },
+    ],
+  },
+  {
+    id: 2,
+    iconId: 2,
+    title: "Meditation",
+    isDone: false,
+    notes: [
+      {
+        id: 1,
+        content: "akslkakslaik",
+      },
+    ],
+  },
+  {
+    id: 3,
+    iconId: 3,
+    title: "Sleep 6 Hours",
+    isDone: false,
+    notes: [
+      {
+        id: 1,
+        content: "akslkakslaik",
+      },
+    ],
+  },
 ];
 
 export function getIcon(id: number) {
