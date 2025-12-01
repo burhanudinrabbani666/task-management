@@ -67,7 +67,7 @@ export function HabitItemMenu({
   );
 }
 
-function HabitItem({
+export function HabitItem({
   habit,
   onDelete,
   onToogleDone,
