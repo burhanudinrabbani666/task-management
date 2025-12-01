@@ -1,42 +1,22 @@
-# Habit
+![banner](<./public/task-management(1).svg>)
 
-![Status](https://img.shields.io/badge/status-active-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
-![Framework](https://img.shields.io/badge/framework-React-61DAFB?logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/badge/language-TypeScript-3178C6?logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/style-TailwindCSS-38B2AC?logo=tailwindcss&logoColor=white)
-![Deploy](https://img.shields.io/badge/deploy-Netlify-00C7B7?logo=netlify&logoColor=white)
+# Habit Tracker
 
-A simple and clean Habit Tracking application designed to help users maintain their good habits daily.
+Make every day more productive—simple, fun, and meaningful. Build strong habits, stay consistent, and elevate your mood with timeless Stoic wisdom. Create quality days, one habit at a time.
 
-## ✨ Features
+let's visit the website:
+[Habit Tracker](https://habit-bani.burhanudin.com/)
 
-- **Add Habit** — easily create new habits.
-- **Mark as Done** — click to toggle daily completion.
-- **Daily Quotes** — displays motivational quotes to inspire the user.
+## Features
 
-## 🛠️ Technologies Used
+- Simple and fun interface
+- Create new habits easily, don't be lazy!!
+- Quotes to live your day with enthusiasm
+- Greetings from many countries
+- Add notes for important things in your productive daily life
 
-- **HTML**
-- **Tailwind CSS**
-- **React**
-- **TypeScript**
+## Tech Stack
 
-## 🚀 Deployment
-
-This project is deployed on **Netlify**.
-
-## 🗺️ Roadmap
-
-Planned improvements and upcoming features:
-
-- Weekly & monthly statistics
-- Dark mode support
-- Streak-based reward system
-- Cloud data synchronization
-- Custom habit icons
-- Daily notification reminders
-
-## 📄 License
-
-This project is licensed under the **MIT License**.
+![HTML](https://img.shields.io/badge/HTML-orange)
+<br> ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-blue)
+<br> ![React JS](https://img.shields.io/badge/react-skyblue)
