@@ -58,7 +58,7 @@ export function Top() {
     <div className="my-8 flex items-center justify-between px-4">
       <Popover>
         <PopoverTrigger asChild>
-          <Button className="bg-amber-100 text-neutral-600" variant="ghost">
+          <Button className="text-neutral-50" variant="destructive" size="sm">
             {" "}
             Quote
           </Button>

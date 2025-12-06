@@ -116,18 +116,16 @@ export function Habits() {
             Create
           </Button>
         </form>
-        <div className="h-80 overflow-scroll">
-          <ul className="flex flex-col-reverse gap-2">
-            {habits.map((habit: Habit) => (
-              <HabitItem
-                key={habit.id}
-                habit={habit}
-                onDelete={handleDelete}
-                onToogleDone={handleToogleDone}
-              />
-            ))}
-          </ul>
-        </div>
+        <ul className="flex flex-col-reverse gap-2">
+          {habits.map((habit: Habit) => (
+            <HabitItem
+              key={habit.id}
+              habit={habit}
+              onDelete={handleDelete}
+              onToogleDone={handleToogleDone}
+            />
+          ))}
+        </ul>
         <div
           className={cn(
             "flex items-center justify-center gap-4 opacity-0",
