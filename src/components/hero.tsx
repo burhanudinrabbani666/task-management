@@ -64,12 +64,12 @@ export function Hero() {
   }
 
   return (
-    <header className="flex flex-col items-center gap-1">
-      <div className="flex gap-2 text-2xl">
+    <header className="flex flex-col items-center gap-1 text-xl">
+      <div className="flex gap-2">
         <span>{greetingData[getId].greeting}, </span>
-        <h1 className="font-semibold">{username}</h1>
+        <h1>{username}</h1>
       </div>
-      <p className="opacity-50">
+      <p className="text-lg opacity-50">
         keep up the spirit to maintain your good habits
       </p>
     </header>

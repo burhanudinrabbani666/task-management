@@ -55,7 +55,7 @@ export function Top() {
   const getId = Math.trunc(Math.random() * quotes.length);
   const getQuote = Math.trunc(Math.random() * quotes[getId].quote.length);
   return (
-    <div className="my-8 flex items-center justify-between px-4">
+    <div className="flex items-center justify-between px-4">
       <Popover>
         <PopoverTrigger asChild>
           <Button className="text-neutral-50" variant="destructive" size="sm">
