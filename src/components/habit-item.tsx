@@ -17,7 +17,7 @@ export function HabitItem({
   return (
     <li
       className={cn(
-        "flex items-baseline justify-between rounded-xl bg-amber-100 px-4 py-3 indent-1 inset-ring-2 inset-ring-neutral-300",
+        "flex items-baseline justify-between rounded-xl bg-neutral-50 px-4 py-3 indent-1 inset-ring-2 inset-ring-neutral-300",
         habit.isDone &&
           "bg-[url(/public/check-circle.svg)] bg-size-[100px] bg-bottom-right bg-no-repeat inset-ring-2 inset-ring-green-700 transition duration-500",
       )}
@@ -29,7 +29,7 @@ export function HabitItem({
         </div>
         <Button
           className={cn(
-            "hover:cursor-pointer active:bg-green-700",
+            "hover:cursor-pointer hover:bg-green-500 active:bg-green-700",
             habit.isDone && "border border-green-700 bg-green-700 text-white",
           )}
           variant="ghost"
