@@ -1,23 +1,11 @@
 import { useEffect, useState } from "react";
-import {
-  PlusIcon,
-  TrashIcon,
-  DotsThreeIcon,
-  CaretDoubleDownIcon,
-  EyeIcon,
-} from "@phosphor-icons/react";
+import { CaretDoubleDownIcon } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import {} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
-import { Link } from "react-router";
 import { HabitSchema, type Habit, type Habits } from "@/modules/habit/schema";
 import {
   Select,
@@ -27,85 +15,12 @@ import {
   SelectValue,
 } from "./ui/select";
 import { toast } from "sonner";
-import { getIcon, iconLib, IntialHabitData } from "@/lib/initial-data";
+import { iconLib, IntialHabitData } from "@/lib/initial-data";
+import { HabitItem } from "./habit-item";
 
 // initial
 const icons = iconLib;
 const habitData = IntialHabitData;
-
-export function HabitItemMenu({
-  id,
-  onDelete,
-}: {
-  id: number;
-  onDelete: (id: number) => void;
-}) {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button size="icon-lg" variant="secondary">
-          <DotsThreeIcon color="#333" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent side="left">
-        <DropdownMenuItem asChild>
-          <Link to={`/habit/${id}`}>
-            <EyeIcon weight="duotone" />
-            <span>View</span>
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <PlusIcon />
-          <span>Add notes</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => onDelete(id)}>
-          <TrashIcon weight="duotone" />
-          <span>Delete</span>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
-
-export function HabitItem({
-  habit,
-  onDelete,
-  onToogleDone,
-}: {
-  habit: Habit;
-  onDelete: (id: number) => void;
-  onToogleDone: (id: number) => void;
-}) {
-  const Icon = getIcon(habit.iconId);
-  return (
-    <li
-      className={cn(
-        "flex items-baseline justify-between rounded-xl bg-amber-100 px-4 py-3 indent-1 inset-ring-2 inset-ring-neutral-300",
-        habit.isDone &&
-          "bg-[url(/public/check-circle.svg)] bg-size-[100px] bg-bottom-right bg-no-repeat inset-ring-2 inset-ring-green-700 transition duration-500",
-      )}
-    >
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-3">
-          <Icon size={28} weight="duotone" />
-          <span className="text-lg font-semibold">{habit.title}</span>
-        </div>
-        <Button
-          className={cn(
-            "hover:cursor-pointer active:bg-green-700",
-            habit.isDone && "border border-green-700 bg-green-700 text-white",
-          )}
-          variant="ghost"
-          size="sm"
-          onClick={() => onToogleDone(habit.id)}
-        >
-          <span className="opacity-70">Check</span>
-        </Button>
-      </div>
-      <HabitItemMenu id={habit.id} onDelete={onDelete} />
-    </li>
-  );
-}
 
 export function Habits() {
   const [habits, setHabits] = useState(() => {
