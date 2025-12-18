@@ -34,12 +34,12 @@ export function Hero() {
 
     setUsername(formData.get("title")?.toString().trim() || "");
   }
+  return (
+    <header className="flex flex-col items-center gap-1">
+      <div className="flex items-baseline-last gap-2 text-lg">
+        <span>{greetingData[getId].greeting} </span>
 
-  if (!username) {
-    return (
-      <header className="flex flex-col items-center gap-1">
-        <div className="flex gap-2 text-2xl">
-          <span>{greetingData[getId].greeting}, </span>
+        {!username ? (
           <form className="flex gap-1" method="post" onSubmit={handleUsername}>
             <Label htmlFor="title" className="hidden">
               username
@@ -48,28 +48,18 @@ export function Hero() {
               id="title"
               name="title"
               type="text"
-              className="border-0 p-0 text-2xl"
-              placeholder="Write Yourname here..."
+              className="w-40 border-0 p-0 text-lg"
+              placeholder="Write Yourname..."
             />
-            <Button variant="ghost" type="submit">
+            <Button variant="ghost" type="submit" className="border-0">
               <CheckCircleIcon />
             </Button>
           </form>
-        </div>
-        <p className="opacity-50">
-          keep up the spirit to maintain your good habits
-        </p>
-      </header>
-    );
-  }
-
-  return (
-    <header className="flex flex-col items-center gap-1 text-xl">
-      <div className="flex gap-2">
-        <span>{greetingData[getId].greeting}, </span>
-        <h1>{username}</h1>
+        ) : (
+          <h1>{username}</h1>
+        )}
       </div>
-      <p className="text-lg opacity-50">
+      <p className="opacity-50">
         keep up the spirit to maintain your good habits
       </p>
     </header>
